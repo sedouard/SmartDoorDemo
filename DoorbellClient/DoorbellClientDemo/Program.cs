@@ -40,6 +40,8 @@ namespace DoorBellClient
 					//This is how we break out of the loop via hardware.
                     if (!s_Gpio.InputPin(FileGPIO.FileGPIO.enumPIN.gpio17))
                     {
+						//This send a HIGH voltage (or power) to pin 4. Attaching an LED to pin 4
+						//will activate the LED. You should attach a resistor and a green LED to this pin.
                         showReady(true);
                         //Poll the pin checking it over and over. WHen Pin 22 is attached to
 						//POWER or High voltage the photo taking process will start. This
