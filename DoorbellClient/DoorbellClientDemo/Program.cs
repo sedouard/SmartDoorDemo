@@ -35,11 +35,15 @@ namespace DoorBellClient
             {
                 try
                 {
-
+					
+					//Pin 17 Must be attached to GROUND or low voltage or else the program wills stop.
+					//This is how we break out of the loop via hardware.
                     if (!s_Gpio.InputPin(FileGPIO.FileGPIO.enumPIN.gpio17))
                     {
                         showReady(true);
-                        //Poll the pin 10Hz. Assuming a HI true
+                        //Poll the pin checking it over and over. WHen Pin 22 is attached to
+						//POWER or High voltage the photo taking process will start. This
+						//is how we detect if the doorbell is pressed
                         if (s_Gpio.InputPin(FileGPIO.FileGPIO.enumPIN.gpio22))
                         {
                             showReady(false);
