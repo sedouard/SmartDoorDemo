@@ -24,5 +24,6 @@ Execute the following command on the terminal of the Raspberry Pi:
 
 The program will immediately start polling the input pins. In order for the program to keep running, Pin17 should be pulled to GROUND and Pin22 should be pulled to GROUND. A 'ready' LED can be attached to the output Pin4 and when you want the device to take a picture, pull Pin22 HIGH.
 
-See the blog post http://stevenedouard.com/running-code-raspberry-pi-send-photos-cloud for more information
+See the blog post http://stevenedouard.com/running-code-raspberry-pi-send-photos-cloud for more information on wiring up your pins.
+
 
