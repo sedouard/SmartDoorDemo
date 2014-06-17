@@ -30,7 +30,7 @@ namespace FileGPIO
 #if LINUX
         private const string GPIO_PATH = "/sys/class/gpio/";
 #else
-        private const string GPIO_PATH = "/temp/class/gpio/";
+        private const string GPIO_PATH = "../../class/gpio/";
 #endif
         //contains list of pins exported with an OUT direction
         List<enumPIN> _OutExported = new List<enumPIN>();

@@ -99,9 +99,9 @@ namespace DoorBellClient
 
             //Get Photo Url while the rapistill process is taking the picture.
 			//This request will ask the server for a new photo blob that we can upload the picture to.
-            WebRequest photoRequest = WebRequest.Create("https://<YOUR-MOBILE-SERVICE-NAME>.azure-mobile.net/api/photos?");
+            WebRequest photoRequest = WebRequest.Create("https://<YOUR-MOBILE-SERVICE-NAME>.azure-mobile.net/api/photo");
             photoRequest.Method = "GET";
-            photoRequest.Headers.Add("X-ZUMO-APPLICATION", "<YOUR MOBILE SERVICE API ");
+            photoRequest.Headers.Add("X-ZUMO-APPLICATION", "<YOUR MOBILE SERVICE API KEY>");
             PhotoResponse photoResp = null;
             using (var sbPhotoResponseStream = photoRequest.GetResponse().GetResponseStream())
             {
@@ -126,7 +126,7 @@ namespace DoorBellClient
             FileStream fs = new FileStream(@"/home/pi/Desktop/me.jpg", FileMode.Open);
 #else
 			//for windows, just upload the test photo.
-            FileStream fs = new FileStream(@"testPhoto.jpg", FileMode.Open);
+            FileStream fs = new FileStream(@"../../testPhoto.jpg", FileMode.Open);
 #endif
 			
             using (fs)
@@ -138,7 +138,7 @@ namespace DoorBellClient
 
             using (putPhotoRequest.GetResponse())
             {
-
+                Console.WriteLine("Sucessfully Uploaded Photo to cloud");
             }
 
         }

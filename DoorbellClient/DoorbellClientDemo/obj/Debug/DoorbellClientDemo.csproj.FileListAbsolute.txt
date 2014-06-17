@@ -9,3 +9,8 @@ c:\users\sedouard\documents\visual studio 2013\Projects\DoorbellClientDemo\Doorb
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorbellClientDemo.exe.config
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.exe
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.pdb
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorbellClientDemo.exe
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorbellClientDemo.pdb
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.csprojResolveAssemblyReference.cache
