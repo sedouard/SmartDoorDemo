@@ -8,7 +8,7 @@ This repository consist of 2 of the 3 components. The first is the DoorBellClien
 
 To Run the DoorBellClient open DoorBellClient/DoorBellClient.sln in Visual Studio 2013. Change the solution configuration to 'Debug'.
 
-In Program.cs change <YOUR MOBILE SERVICE API KEY> with your mobile service API key and <YOUR MOBILE SERVICE NAME> to the name of your Azure mobile service.
+In Program.cs change <YOUR MOBILE SERVICE API KEY\> with your mobile service API key and <YOUR MOBILE SERVICE NAME> to the name of your Azure mobile service.
 
 Press F5 and the program will repeatedly upload testPhoto.jpg to your storage account. You should place a breakpoint at 'Sucessfully Uploaded Photo to cloud' which will be hit after every upload.
 
