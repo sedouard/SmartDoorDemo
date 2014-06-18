@@ -99,7 +99,7 @@ namespace DoorBellClient
 
             //Get Photo Url while the rapistill process is taking the picture.
 			//This request will ask the server for a new photo blob that we can upload the picture to.
-            WebRequest photoRequest = WebRequest.Create("https://smartdoor.azure-mobile.net/api/photo?doorbellID=325425423");
+            WebRequest photoRequest = WebRequest.Create("https://<YOUR-MOBILE-SERVICE-NAME>.azure-mobile.net/api/photo");
             photoRequest.Method = "GET";
             photoRequest.Headers.Add("X-ZUMO-APPLICATION", "<YOUR MOBILE SERVICE API KEY>");
             PhotoResponse photoResp = null;

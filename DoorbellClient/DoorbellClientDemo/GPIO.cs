@@ -28,8 +28,10 @@ namespace FileGPIO
         public enum enumDirection { IN, OUT };
 
 #if LINUX
+        //On the raspberry pi, read read and write to the actual GPIO files.
         private const string GPIO_PATH = "/sys/class/gpio/";
 #else
+        //On Windows, just read the dummy GPIO folder in the root directory of DoorBellClient.
         private const string GPIO_PATH = "../../class/gpio/";
 #endif
         //contains list of pins exported with an OUT direction
