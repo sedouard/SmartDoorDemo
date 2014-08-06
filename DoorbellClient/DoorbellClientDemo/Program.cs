@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using System.Net;
 using System.Web;
 using System.IO;
+using System.Configuration;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Web;
+using Microsoft.ServiceBus.Messaging;
 using FileGPIO;
 namespace DoorBellClient
 {
@@ -36,7 +39,7 @@ namespace DoorBellClient
                 try
                 {
 					
-					//Pin 17 Must be attached to GROUND or low voltage or else the program wills stop.
+					//Pin 17 Must be attached to GROUND or low voltage or else the program will stop.
 					//This is how we break out of the loop via hardware.
                     if (!s_Gpio.InputPin(FileGPIO.FileGPIO.enumPIN.gpio17))
                     {
@@ -99,9 +102,9 @@ namespace DoorBellClient
 
             //Get Photo Url while the rapistill process is taking the picture.
 			//This request will ask the server for a new photo blob that we can upload the picture to.
-            WebRequest photoRequest = WebRequest.Create("https://<YOUR-MOBILE-SERVICE-NAME>.azure-mobile.net/api/photo");
+            WebRequest photoRequest = WebRequest.Create("https://smartdoordemo.azure-mobile.net/api/getuploadblobsas");
             photoRequest.Method = "GET";
-            photoRequest.Headers.Add("X-ZUMO-APPLICATION", "<YOUR MOBILE SERVICE API KEY>");
+            photoRequest.Headers.Add("X-ZUMO-APPLICATION", ConfigurationManager.AppSettings["MobileServiceAPIKey"]);
             PhotoResponse photoResp = null;
             using (var sbPhotoResponseStream = photoRequest.GetResponse().GetResponseStream())
             {
@@ -141,6 +144,28 @@ namespace DoorBellClient
                 Console.WriteLine("Sucessfully Uploaded Photo to cloud");
             }
 
+            var qc = QueueClient.CreateFromConnectionString(ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"], "smartdoorqueue");
+
+            var notificationMessageBody = new DoorBellNotification(){
+                doorBellID = ConfigurationManager.AppSettings["DoorbellID"],
+                imageUrl = photoResp.sasUrl
+            };
+            //serialize message body object and convert to byte array
+            byte[] messageBody = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(notificationMessageBody));
+            
+            //create a Stream from the bytes, we will use it to send to the Service Bus Queue
+            var messageStream = new MemoryStream(messageBody);
+
+            try
+            {
+                qc.Send(new BrokeredMessage(messageStream));
+                Console.WriteLine("Sucessfully sent service bus message");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
         }
 
     }
@@ -151,7 +176,7 @@ namespace DoorBellClient
     public class DoorBellNotification
     {
         public string doorBellID { get; set; }
-        public string imageId { get; set; }
+        public string imageUrl { get; set; }
     }
 
     public class PhotoResponse

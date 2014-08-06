@@ -14,3 +14,7 @@ C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDe
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Newtonsoft.Json.dll
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Newtonsoft.Json.xml
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.csprojResolveAssemblyReference.cache
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.ServiceBus.dll
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.ServiceBus.xml
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
