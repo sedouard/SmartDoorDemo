@@ -7,12 +7,12 @@ using System.Configuration;
 using System.Net;
 using System.Web;
 using System.IO;
-using System.Configuration;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Web;
 using Microsoft.ServiceBus.Messaging;
 using FileGPIO;
+using System.Security.Cryptography;
+using System.Globalization;
 namespace DoorBellClient
 {
     class Program
@@ -21,9 +21,7 @@ namespace DoorBellClient
 		//Raspberr pi exposes these pins via special files.
         static FileGPIO.FileGPIO s_Gpio = new FileGPIO.FileGPIO();
         static DateTime startTime = DateTime.Now;
-        static int wrapExpSecs = -1;
         static string deviceID = "325425423";
-        static string wrapToken = null;
         static string photoQuality = "50";
         static void Main(string[] args)
         {
@@ -144,32 +142,67 @@ namespace DoorBellClient
                 Console.WriteLine("Sucessfully Uploaded Photo to cloud");
             }
 
-            var qc = QueueClient.CreateFromConnectionString(ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"], "smartdoorqueue");
-
-            var notificationMessageBody = new DoorBellNotification(){
-                doorBellID = ConfigurationManager.AppSettings["DoorbellID"],
-                imageUrl = photoResp.sasUrl
-            };
-            //serialize message body object and convert to byte array
-            byte[] messageBody = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(notificationMessageBody));
-            
-            //create a Stream from the bytes, we will use it to send to the Service Bus Queue
-            var messageStream = new MemoryStream(messageBody);
+            Console.WriteLine("Sending notification to service bus queue");
+            WebRequest sbRequest = WebRequest.Create("https://smartdoordemo.servicebus.Windows.net/smartdoorqueue/messages");
+            var headers = sbRequest.Headers;
+            sbRequest.Method = "POST";
+            using (var sbMessageStream = sbRequest.GetRequestStream())
+            {
+                string body = JsonConvert.SerializeObject(new DoorBellNotification()
+                {
+                    doorBellID = deviceID,
+                    imageUrl = photoResp.photoId
+                });
+                var bytes = Encoding.UTF8.GetBytes(body);
+                sbMessageStream.Write(bytes, 0, bytes.Length);
+                headers.Add("Authorization", createToken("https://smartdoordemo.servicebus.Windows.net/smartdoorqueue/messages", "DevicePolicy", ConfigurationManager.AppSettings["ServiceBusSharedAccessKey"]));
+            }
 
             try
             {
-                qc.Send(new BrokeredMessage(messageStream));
-                Console.WriteLine("Sucessfully sent service bus message");
+                Console.WriteLine("Sending door bell notification for " + deviceID);
+                using (var response = sbRequest.GetResponse())
+                {
+                    Console.WriteLine("Sucessfully Sent");
+                }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("Couldn't post to service bus -" + e);
             }
 
         }
 
+        // Create REST request and append the token to ‘Authorization’ header . . . 
+
+        /// <summary> 
+        /// Code  for generating of SAS token for authorization with Service Bus 
+        /// 
+        /// This handy function can be found on this helpful blog post:
+        /// http://developers.de/blogs/damir_dobric/archive/2013/10/17/how-to-create-shared-access-signature-for-service-bus.aspx
+        /// </summary> 
+        /// <param name="resourceUri"></param> 
+        /// <param name="keyName"></param> 
+        /// <param name="key"></param> 
+        /// <returns></returns> 
+        private static string createToken(string resourceUri, string keyName, string key)
+        {
+            TimeSpan sinceEpoch = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var expiry = Convert.ToString((int)sinceEpoch.TotalSeconds + 3600); //EXPIRES in 1h 
+            string stringToSign = HttpUtility.UrlEncode(resourceUri) + "\n" + expiry;
+            HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(key));
+
+            var signature = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(stringToSign)));
+            var sasToken = String.Format(CultureInfo.InvariantCulture,
+            "SharedAccessSignature sr={0}&sig={1}&se={2}&skn={3}",
+                HttpUtility.UrlEncode(resourceUri), HttpUtility.UrlEncode(signature), expiry, keyName);
+
+            return sasToken;
+        }
+
     }
 	
+
 	/**
 		Serialization classes for the JSON coming from the mobile service
 	**/

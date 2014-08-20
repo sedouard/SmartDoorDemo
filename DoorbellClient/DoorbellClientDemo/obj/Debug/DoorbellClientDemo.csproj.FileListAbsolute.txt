@@ -6,15 +6,14 @@ c:\users\sedouard\documents\visual studio 2013\Projects\DoorbellClientDemo\Doorb
 c:\users\sedouard\documents\visual studio 2013\Projects\DoorbellClientDemo\DoorbellClientDemo\bin\Debug\Newtonsoft.Json.xml
 c:\users\sedouard\documents\visual studio 2013\Projects\DoorbellClientDemo\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.exe
 c:\users\sedouard\documents\visual studio 2013\Projects\DoorbellClientDemo\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.pdb
-C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorbellClientDemo.exe.config
-C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.exe
-C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.pdb
-C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorbellClientDemo.exe
-C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorbellClientDemo.pdb
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Newtonsoft.Json.dll
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Newtonsoft.Json.xml
-C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorbellClientDemo.csprojResolveAssemblyReference.cache
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.ServiceBus.dll
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.ServiceBus.xml
 C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorBellClient.exe.config
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorBellClient.exe
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\bin\Debug\DoorBellClient.pdb
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorBellClient.exe
+C:\Users\sedouard\Documents\GitHub\SmartDoorDemo\DoorbellClient\DoorbellClientDemo\obj\Debug\DoorBellClient.pdb
