@@ -9,7 +9,6 @@ using System.Web;
 using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using Microsoft.ServiceBus.Messaging;
 using FileGPIO;
 using System.Security.Cryptography;
 using System.Globalization;
